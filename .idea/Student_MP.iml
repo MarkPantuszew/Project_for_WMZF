@@ -2,9 +2,9 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <sourceFolder url="file://$MODULE_DIR$/zad_domowe/5" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/zad_domowe/5" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.9 (Student_MP)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
