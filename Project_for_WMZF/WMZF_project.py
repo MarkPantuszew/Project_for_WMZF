@@ -5,3 +5,4 @@ print(fun(87))
 #kurwa nie dziala
 #chyba dziala
 #Kamil, napisz cos i zcommituj jo jo
+#Kamil - próba :ooooooooooooo
