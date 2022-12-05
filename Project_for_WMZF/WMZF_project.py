@@ -10,3 +10,4 @@ def drgania_mech(a, w, f, m, p):
     plt.plot(t, x, color='r', label='dr.mech')
     plt.show()
     return drgania_mech(a,w,f,m,p)
+#
