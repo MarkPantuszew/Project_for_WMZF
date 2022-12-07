@@ -6,7 +6,8 @@ def drgania_mech(a, w, f, m, p):
     m = float(input('Podaj wartosc masy dla drgan mechanicznych: '))  # masa
     p = float(input('Podaj wartosc amplitudy dla drgan mechanicznych: '))  # faza_poczatkowa
     t = np.linespace(0, 1000, 10000000)
-    x = a * (np.exp(-(f/2m) * t)) * np.sin((np.sqrt(w ** 2 - (f/2m) ** 2)) * t + p))
+    x = a * (np.exp(-(f/2m) * t)) * np.sin((np.sqrt(w * 2 - (f/2m) * 2)) * t + p))
     plt.plot(t, x, color='r', label='dr.mech')
     plt.show()
     return drgania_mech(a,w,f,m,p)
+# Kamil - próba środa
