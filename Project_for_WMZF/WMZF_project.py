@@ -12,7 +12,7 @@ while a ==0:
     if opcja_1==1:
             print(4)
         #tu wstawimy drgania mechaniczne
-    if opcja_1==2:
+    if opcja_1==2:                                                                 #ewentualnie z else tez mozna przejscie wymysliec
         #a tu RLC
             print(455677777)
             
