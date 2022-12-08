@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib as plt
 a = 0
 while a ==0:
-    opcja_1 =input('Wpisz liczbe "1" zeby przejsc do drgan mechanicznych albo liczbe "2" zeby wybrac grdania w ukladzie RLC: ')
+    opcja_1 =input('Wybierz rodzaj drgań;\nWpisz 1 dla drgań mechanicznych lub 2 dla drgań elektrycznych:')
     try:
         opcja_1=int(opcja_1)
         if(opcja_1==1 or opcja_1==2):
@@ -26,7 +26,7 @@ while a ==0:
         print('ty kistiu' )
         b = 0
         while b == 0:
-            wybor = int(input('Wpisz liczbe "1" zeby wprowadzic wartosc czasu albo liczbe "2" zeby wartosc czasu ustanowila sie domyslnie: '))
+            wybor = int(input('Wpisz 1, aby otrzymać wartość wychylenia w konkretnej chwili czasu lub 2, aby wyświetlić wykres drgań w funkcji czasu:'))
             match wybor:
                 case 1:
                     czas=float(input('Podaj wartosc czasu, przeciez tego chciales kurwa: '))#tu nie trzeba obslugiwac wyjatki
@@ -89,18 +89,18 @@ while a ==0:
                     
                     
                     
+
                     
-                    
-import numpy as np
-def drgania_mech(a, w, f, m, p):
-    a = float(input('Podaj wartosc amplitudy dla drgan mechanicznych: '))  # amplituda
-    w = float(input('Podaj wartosc czestosci wlasnej dla drgan mechanicznych: '))  # czestosc wlasna
-    f = float(input('Podaj wartosc wspolczynnika oporu ruchu dla drgan mechanicznych: '))  # wsp_op_ruchu
-    m = float(input('Podaj wartosc masy dla drgan mechanicznych: '))  # masa
-    p = float(input('Podaj wartosc amplitudy dla drgan mechanicznych: '))  # faza_poczatkowa
-    t = np.linespace(0, 1000, 10000000)
-    x = a * (np.exp(-(f/2m) * t)) * np.sin((np.sqrt(w * 2 - (f/2m) * 2)) * t + p))
-    plt.plot(t, x, color='r', label='dr.mech')
-    plt.show()
-    return drgania_mech(a,w,f,m,p)
-# Kamil - próba środa
+#
+# def drgania_mech(a, w, f, m, p):
+#     a = float(input('Podaj wartosc amplitudy dla drgan mechanicznych: '))  # amplituda
+#     w = float(input('Podaj wartosc czestosci wlasnej dla drgan mechanicznych: '))  # czestosc wlasna
+#     f = float(input('Podaj wartosc wspolczynnika oporu ruchu dla drgan mechanicznych: '))  # wsp_op_ruchu
+#     m = float(input('Podaj wartosc masy dla drgan mechanicznych: '))  # masa
+#     p = float(input('Podaj wartosc amplitudy dla drgan mechanicznych: '))  # faza_poczatkowa
+#     t = np.linespace(0, 1000, 10000000)
+#     x = a * (np.exp(-(f/2m) * t)) * np.sin((np.sqrt(w * 2 - (f/2m) * 2)) * t + p))
+#     plt.plot(t, x, color='r', label='dr.mech')
+#     plt.show()
+#     return drgania_mech(a,w,f,m,p)
+#
