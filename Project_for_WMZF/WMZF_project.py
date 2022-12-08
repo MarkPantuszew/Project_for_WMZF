@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib as plt
 a = 0
 while a ==0:
-    opcja_1 =input('Wybierz rodzaj drgań;\nWpisz 1 dla drgań mechanicznych lub 2 dla drgań elektrycznych:')
+    opcja_1 =input('Wybierz rodzaj drgań;\nWpisz 1 dla drgań mechanicznych lub 2 dla drgań elektrycznych: ')
     try:
         opcja_1=int(opcja_1)
         if(opcja_1==1 or opcja_1==2):
