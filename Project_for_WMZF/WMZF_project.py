@@ -40,7 +40,9 @@ while a == 0:
                     b = 1
                 case _:
                     print("Nie mozna tego uzyc!Wybierz 1 albo 2")
-
+        if opcja_1==2:
+        #a tu RLC
+            print(455677777)
 #
 # def drgania_mech(a, w, f, m, p):
 #     a = float(input('Podaj wartosc amplitudy dla drgan mechanicznych: '))  # amplituda
