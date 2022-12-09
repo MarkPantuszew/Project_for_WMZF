@@ -59,15 +59,6 @@ while a == 0:
 
 
 
-    if opcja_1==2:
-        #a tu RLC
-            print(455677777)
-
-
-
-
-
-
 
 
 
