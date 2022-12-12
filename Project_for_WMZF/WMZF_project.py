@@ -30,10 +30,13 @@ while a == 0:
                     t = float(input('Podaj moment ruchu:[s]'))
                     b = 1
                     def mech_wartosc():
-                        x = a * (np.exp(-f / (2 * m)) * t) * np.sin((np.sqrt((w ** 2) - ((f / (2 * m)) ** 2)) * t) + p)
-                        return x
-                    x = mech_wartosc()
-                    print('Wartość wychylania dla chwili czasu t=',t,'s wyniosła ',x)
+                        x = a * (np.exp(-f / (2 * m)) * t) * np.sin((np.sqrt(abs((w ** 2) - ((f / (2 * m)) ** 2))) * t) + p)
+                        if ((w ** 2) - ((f / (2 * m)) ** 2)) >= 0:
+                            return print('Wartość wychylania dla chwili czasu t=', t, 's wyniosła ', x)
+                        else:
+                            return print('Brak drgań dla wprowadzonych parametrów, zachodzi zanik eksponencjalny')
+                    mech_wartosc()
+
 #MECH-WYKRES
                 case 2:
                     t = np.linspace(0, 10, 100000)
