@@ -17,7 +17,7 @@ while a == 0:
 #WYBÓR: MECHANICZNE - WARTOŚĆ LUB WYKRES
     if opcja_1 == 1:
         a = float(input('Podaj wartość amplitudy drgań mechanicznych [m]:'))
-        w = float(input('Podaj wartość czestości własnej drgań [1/s]:'))
+        w = float(input('Podaj wartość częstości własnej drgań [1/s]:'))
         f = float(input('Podaj wartość współczynnika oporów ruchu [kg/s]:'))
         m = float(input('Podaj masę drgającego ciała [kg]:'))
         p = float(input('Podaj fazę poczatkową ruchu [rad]:'))
@@ -36,16 +36,19 @@ while a == 0:
                     print('Wartość wychylania dla chwili czasu t=',t,'s wyniosła ',x)
 #MECH-WYKRES
                 case 2:
-                    t = np.linspace(0, 60, 100000)
+                    t = np.linspace(0, 10, 100000)
                     b = 1
                     def mech_wykres():
-                        x = a * (np.exp((-f/(2 * m))*t)) * np.sin((np.sqrt((w ** 2) - ((f / (2 * m)) ** 2)) * t) + p)
+                        x = a * (np.exp((-f/(2 * m))*t)) * np.sin((np.sqrt(abs((w ** 2) - ((f / (2 * m)) ** 2))) * t) + p)
                         plt.plot(t,x,color='r')
                         plt.title('Drgania mechaniczne: x(t)')
                         plt.xlabel("Czas - t[s]")
                         plt.ylabel("Wychylenie - x[m]")
                         plt.grid()
-                        return plt.show()
+                        if ((w**2) - ((f/(2 * m))**2)) >= 0:
+                            return plt.show()
+                        else:
+                            return print('Brak drgań dla wprowadzonych parametrów, zachodzi zanik eksponencjalny')
                     mech_wykres()
 
                 case _:
