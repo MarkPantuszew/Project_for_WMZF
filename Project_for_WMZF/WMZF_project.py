@@ -18,7 +18,7 @@ while a == 0:
 #WYBÓR: MECHANICZNE - WARTOŚĆ LUB WYKRES
     if opcja_1 == 1:
         a = float(input('Podaj wartość amplitudy drgań mechanicznych [m]:'))
-        w = float(input('Podaj wartość częstości własnej drgań [1/s]:'))
+        w = float(input('Podaj wartość częstości własnej drgań [rad/s]:'))
         f = float(input('Podaj wartość współczynnika oporów ruchu [kg/s]:'))
         m = float(input('Podaj masę drgającego ciała [kg]:'))
         p = float(input('Podaj fazę poczatkową ruchu [rad]:'))
