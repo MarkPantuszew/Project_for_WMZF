@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
 #WYBÓR: RODZAJ DRGAŃ
 a = 0
@@ -38,7 +39,7 @@ while a == 0:
                     mech_wartosc()
 #MECH-WYKRES
                 case 2:
-                    t = np.linspace(0, 10, 100000)
+                    t = np.linspace(0, 60, 100000)
                     b = 1
                     def mech_wykres():
                         x = a * (np.exp((-f/(2 * m))*t)) * np.sin((np.sqrt(abs((w ** 2) - ((f / (2 * m)) ** 2))) * t) + p)
@@ -78,7 +79,7 @@ while a == 0:
                     def el_wartosc():
                         x = a * (np.exp(-r / (2 * l)) * t) * np.sin(
                             (np.sqrt(abs((w ** 2) - ((r / (2 * l)) ** 2))) * t) + p)
-                        if ((w ** 2) - ((f / (2 * m)) ** 2)) >= 0:
+                        if ((w ** 2) - ((r / (2 * l)) ** 2)) >= 0:
                             return print('Wartość ładunku w układzie dla chwili czasu t=', t, 's wyniosła ', x)
                         else:
                             return print('Brak drgań dla wprowadzonych parametrów. Zachodzi zanik eksponencjalny')
@@ -86,16 +87,31 @@ while a == 0:
 
                 # EL-WYKRES
                 case 2:
-                    t = np.linspace(0, 10, 100000)
                     b = 1
                     def el_wykres():
-                        x = a * (np.exp((-r / (2 * l)) * t)) * np.sin(
-                            (np.sqrt(abs((w ** 2) - ((r / (2 * l)) ** 2))) * t) + p)
-                        plt.plot(t, x, color='r')
+                        t = np.linspace(0, 60, 1)
+                        t_data = []
+                        q_data = []
+                        x = a * (np.exp((-r / (2 * l)) * t)) * np.sin((np.sqrt(abs((w ** 2) - ((r / (2 * l)) ** 2))) * t) + p)
+
+                        fig, ax = plt.subplots()
+                        ax.set_xlim(0, 60)
+                        ax.set_ylim(-(x + 1), (x + 1))
+                        line, = ax.plot(0, 0)
+
                         plt.title('Drgania elektryczne: q(t)')
-                        plt.xlabel("Czas - t[s]")
-                        plt.ylabel("Wartość łądunku w RLC - q[C]")
+                        plt.xlabel('Czas - t[s]')
+                        plt.ylabel('Wartość łądunku w RLC - q[C]')
                         plt.grid()
+
+                        def animation_frame(t):
+                            t_data.append(t)
+                            q_data.append(a * (np.exp((-r / (2 * l)) * t)) * np.sin((np.sqrt(abs((w ** 2) - ((r / (2 * l)) ** 2))) * t) + p))
+                            line.set_xdata(t_data)
+                            line.set_ydata(q_data)
+                            return line,
+                        animation = FuncAnimation(fig, func=animation_frame, frames=np.arange(0, 30, 0.1), interval=1)
+
                         if ((w ** 2) - ((r / (2 * l)) ** 2)) >= 0:
                             return plt.show()
                         else:
@@ -104,3 +120,24 @@ while a == 0:
 
                 case _:
                     print("Nie można tego użyć. Wybierz 1 lub 2.")
+
+# t_data = []
+# q_data = []
+#
+# x = a * (np.exp((-r / (2 * l)) * t)) * np.sin((np.sqrt(abs((w ** 2) - ((r / (2 * l)) ** 2))) * t) + p)
+#
+# fig, ax = plt.subplots()
+# ax.set_xlim(0, 60)
+# ax.set_ylim(-(x+1), (x+1))
+# line, = ax.plot(0, 0)
+#
+# def animation_frame(t):
+# 	t_data.append(t)
+# 	q_data.append(a * (np.exp((-r / (2 * l)) * t)) * np.sin((np.sqrt(abs((w ** 2) - ((r / (2 * l)) ** 2))) * t) + p))
+#
+# 	line.set_xdata(t_data)
+# 	line.set_ydata(q_data)
+# 	return line,
+#
+# animation = FuncAnimation(fig, func=animation_frame,frames =np.arange(0, 110, 0.1), interval=1)
+# plt.show()
