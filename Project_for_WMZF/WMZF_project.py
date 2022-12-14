@@ -12,7 +12,7 @@ while a == 0:
         else:
             print("Nie można tego użyć. Wybierz 1 lub 2.")
     except:
-        print("To nie jest liczba. Wprowadź 1 lub 2.")
+        print("To nie jest typ interger. Wprowadź 1 lub 2.")
 
 #WYBÓR: MECHANICZNE - WARTOŚĆ LUB WYKRES
     if opcja_1 == 1:
@@ -34,9 +34,8 @@ while a == 0:
                         if ((w ** 2) - ((f / (2 * m)) ** 2)) >= 0:
                             return print('Wartość wychylania dla chwili czasu t=', t, 's wyniosła ', x)
                         else:
-                            return print('Brak drgań dla wprowadzonych parametrów, zachodzi zanik eksponencjalny')
+                            return print('Brak drgań dla wprowadzonych parametrów. Zachodzi zanik eksponencjalny')
                     mech_wartosc()
-
 #MECH-WYKRES
                 case 2:
                     t = np.linspace(0, 10, 100000)
@@ -59,4 +58,49 @@ while a == 0:
 
 #WYBÓR: ELEKTRYCZNE - WARTOŚĆ LUB WYKRES
     if opcja_1==2:
-            print(455677777)
+        a = float(input('Podaj wartość amplitudy ładunku [C]:'))
+        w = float(input('Podaj wartość częstości własnej drgań [1/s]:'))
+        r = float(input('Podaj wartość rezystancji opornika w układzie [Ohm]:'))
+        l = float(input('Podaj indukcyjność cewki w ukłdzie [H]:'))
+        p = float(input('Podaj fazę poczatkową ruchu [rad]:'))
+        b = 0
+
+        while b == 0:
+            wybor = int(input(
+                'Wpisz 1, aby otrzymać wartość ładunku w układzie w konkretnej chwili czasu lub 2, aby wyświetlić wykres drgań w funkcji czasu:'))
+            match wybor:
+
+                # EL-WARTOŚĆ
+                case 1:
+                    t = float(input('Podaj moment drgań:[s]'))
+                    b = 1
+
+                    def el_wartosc():
+                        x = a * (np.exp(-r / (2 * l)) * t) * np.sin(
+                            (np.sqrt(abs((w ** 2) - ((r / (2 * l)) ** 2))) * t) + p)
+                        if ((w ** 2) - ((f / (2 * m)) ** 2)) >= 0:
+                            return print('Wartość ładunku w układzie dla chwili czasu t=', t, 's wyniosła ', x)
+                        else:
+                            return print('Brak drgań dla wprowadzonych parametrów. Zachodzi zanik eksponencjalny')
+                    el_wartosc()
+
+                # EL-WYKRES
+                case 2:
+                    t = np.linspace(0, 10, 100000)
+                    b = 1
+                    def el_wykres():
+                        x = a * (np.exp((-r / (2 * l)) * t)) * np.sin(
+                            (np.sqrt(abs((w ** 2) - ((r / (2 * l)) ** 2))) * t) + p)
+                        plt.plot(t, x, color='r')
+                        plt.title('Drgania elektryczne: q(t)')
+                        plt.xlabel("Czas - t[s]")
+                        plt.ylabel("Wartość łądunku w RLC - q[C]")
+                        plt.grid()
+                        if ((w ** 2) - ((r / (2 * l)) ** 2)) >= 0:
+                            return plt.show()
+                        else:
+                            return print('Brak drgań dla wprowadzonych parametrów, zachodzi zanik eksponencjalny')
+                    el_wykres()
+
+                case _:
+                    print("Nie można tego użyć. Wybierz 1 lub 2.")
