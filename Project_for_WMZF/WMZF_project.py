@@ -110,8 +110,7 @@ while a == 0:
                             line.set_xdata(t_data)
                             line.set_ydata(q_data)
                             return line,
-                        animation = FuncAnimation(fig, func=animation_frame, frames=np.arange(0, 30, 0.1), interval=1)
-
+                        animation = FuncAnimation(fig,  func=animation_frame, frames=np.arange(0, 30, 0.1), interval=1,blit=True,repeat=False)
                         if ((w ** 2) - ((r / (2 * l)) ** 2)) >= 0:
                             return plt.show()
                         else:
@@ -120,24 +119,3 @@ while a == 0:
 
                 case _:
                     print("Nie można tego użyć. Wybierz 1 lub 2.")
-
-# t_data = []
-# q_data = []
-#
-# x = a * (np.exp((-r / (2 * l)) * t)) * np.sin((np.sqrt(abs((w ** 2) - ((r / (2 * l)) ** 2))) * t) + p)
-#
-# fig, ax = plt.subplots()
-# ax.set_xlim(0, 60)
-# ax.set_ylim(-(x+1), (x+1))
-# line, = ax.plot(0, 0)
-#
-# def animation_frame(t):
-# 	t_data.append(t)
-# 	q_data.append(a * (np.exp((-r / (2 * l)) * t)) * np.sin((np.sqrt(abs((w ** 2) - ((r / (2 * l)) ** 2))) * t) + p))
-#
-# 	line.set_xdata(t_data)
-# 	line.set_ydata(q_data)
-# 	return line,
-#
-# animation = FuncAnimation(fig, func=animation_frame,frames =np.arange(0, 110, 0.1), interval=1)
-# plt.show()
