@@ -21,8 +21,7 @@ def wykres():
         line.set_xdata(t_data)
         line.set_ydata(x_data)
         return line,
-    animation = FuncAnimation(fig, func=animation_frame, frames=np.arange(0, 60, 0.1), interval=1, blit=True,
-                              repeat=False)
+    animation = FuncAnimation(fig, func=animation_frame, frames=np.arange(0, 60, 0.1), interval=1, blit=True, repeat=False)
     if ((w * 2) - ((f / (2 * m)) * 2)) >= 0:
         return plt.show()
     else:
