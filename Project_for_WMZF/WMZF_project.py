@@ -4,6 +4,13 @@ from matplotlib.animation import FuncAnimation
 def wartosc():
     x = a * (np.exp(-f / (2 * m) * t)) * np.sin((np.sqrt(abs((w * 2) - ((f / (2 * m)) * 2))) * t) + p)
     return x
+def zapis():
+    zapis_t = repr(t)
+    zapis_x = repr(wartosc())
+    zapis_drganie = repr(drganie)
+    plik = open("Drganie w chwili t", "w")
+    plik.write(zapis_drganie + "w ostatnio wybranej chwili czasu:\nt= " + zapis_t + " s\nwyniosła:\n" + zapis_x)
+    plik.close()
 def wykres():
     t_data = []
     x_data = []
@@ -55,6 +62,8 @@ while a == 0:
                     b = 1
                     if ((w * 2) - ((f / (2 * m)) * 2)) >= 0:
                         print('Wartość wychylenia w  chwili czasu t=', t, 's wyniosła ', wartosc())
+                        drganie = 'Wartość wychylenia '
+                        zapis()
                     else:
                         print('Brak drgań dla wprowadzonych parametrów. Zachodzi zanik eksponencjalny')
 #MECH-WYKRES
@@ -83,6 +92,8 @@ while a == 0:
                     b = 1
                     if ((w * 2) - ((f / (2 * m)) * 2)) >= 0:
                         print('Wartość ładunku w układzie dla chwili czasu t=', t, 's wyniosła ', wartosc())
+                        drganie = 'Wartość ładunku w układzie RLC '
+                        zapis()
                     else:
                         print('Brak drgań dla wprowadzonych parametrów. Zachodzi zanik eksponencjalny')
 #EL-WYKRES
