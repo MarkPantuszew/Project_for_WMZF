@@ -7,7 +7,7 @@ def wartosc():
 def zapis():
     zapis_t = repr(t)
     zapis_x = repr(wartosc())
-    zapis_drganie = repr(drganie)
+    zapis_drganie = drganie
     plik = open("Drganie w chwili t", "w")
     plik.write(zapis_drganie + "w ostatnio wybranej chwili czasu:\nt= " + zapis_t + " s\nwyniosła:\n" + zapis_x)
     plik.close()
