@@ -8,8 +8,9 @@ def zapis():
     zapis_t = repr(t)
     zapis_x = repr(wartosc())
     zapis_drganie = drganie
+    zapis_jednostka = jednostka
     plik = open("Drganie w chwili t", "w")
-    plik.write(zapis_drganie + "w ostatnio wybranej chwili czasu:\nt= " + zapis_t + " s\nwyniosła:\n" + zapis_x)
+    plik.write(zapis_drganie + "w ostatnio wybranej chwili czasu:\nt= " + zapis_t + " s\nwyniosla:\n" + zapis_x + zapis_jednostka)
     plik.close()
 def wykres():
     t_data = []
@@ -32,40 +33,41 @@ def wykres():
     if ((w * 2) - ((f / (2 * m)) * 2)) >= 0:
         return plt.show()
     else:
-        return print('Brak drgań dla wprowadzonych parametrów, zachodzi zanik eksponencjalny')
+        return print('Brak drgan dla wprowadzonych parametrow, zachodzi zanik eksponencjalny')
 #WYBÓR: RODZAJ DRGAŃ
 a = 0
 while a == 0:
-    opcja_1 = input('\nWybierz rodzaj drgań;\nWpisz 1 dla drgań mechanicznych lub 2 dla drgań elektrycznych:\n')
+    opcja_1 = input('\nWybierz rodzaj drgan;\nWpisz 1 dla drgan mechanicznych lub 2 dla drgan elektrycznych:\n')
     try:
         opcja_1 = int(opcja_1)
         if (opcja_1 == 1 or opcja_1 == 2):
             a = a + 1
         else:
-            print("Nie można tego użyć. Wybierz 1 lub 2.")
+            print("Nie mozna tego uzyc. Wybierz 1 lub 2.")
     except:
-        print("To nie jest typ integer. Wprowadź 1 lub 2.")
+        print("To nie jest typ integer. Wprowadz 1 lub 2.")
 #WYBÓR: MECHANICZNE - WARTOŚĆ LUB WYKRES
     if opcja_1 == 1:
-        a = float(input('Podaj wartość \'A\' amplitudy drgań mechanicznych [m]:'))
-        w = float(input('Podaj wartość \'omega\' częstości własnej drgań [rad/s]:'))
-        f = float(input('Podaj wartość \'f\' współczynnika oporów ruchu [kg/s]:'))
-        m = float(input('Podaj masę \'m\' drgającego ciała [kg]:'))
-        p = float(input('Podaj fazę \'phi\' poczatkową ruchu [rad]:'))
+        a = float(input('Podaj wartosc \'A\' amplitudy drgan mechanicznych [m]:'))
+        w = float(input('Podaj wartosc \'omega\' czestosci wlasnej drgan [rad/s]:'))
+        f = float(input('Podaj wartosc \'f\' wspolczynnika oporow ruchu [kg/s]:'))
+        m = float(input('Podaj mase \'m\' drgajacego ciala [kg]:'))
+        p = float(input('Podaj faze \'phi\' poczatkowa ruchu [rad]:'))
         b = 0
         while b == 0:
-            wybor = int(input('Wpisz 1, aby otrzymać wartość wychylenia w konkretnej chwili czasu lub 2, aby wyświetlić wykres drgań w funkcji czasu:'))
+            wybor = int(input('Wpisz 1, aby otrzymac wartosc wychylenia w konkretnej chwili czasu lub 2, aby wyswietlic wykres drgan w funkcji czasu:'))
             match wybor:
 #MECH-WARTOŚĆ
                 case 1:
                     t = float(input('Podaj moment ruchu:[s]'))
                     b = 1
                     if ((w * 2) - ((f / (2 * m)) * 2)) >= 0:
-                        print('Wartość wychylenia w  chwili czasu t=', t, 's wyniosła ', wartosc())
-                        drganie = 'Wartość wychylenia '
+                        print('Wartosc wychylenia w  chwili czasu t=', t, 's wyniosla ', wartosc())
+                        drganie = 'Wartosc wychylenia '
+                        jednostka = ' m'
                         zapis()
                     else:
-                        print('Brak drgań dla wprowadzonych parametrów. Zachodzi zanik eksponencjalny')
+                        print('Brak drgan dla wprowadzonych parametrow. Zachodzi zanik eksponencjalny')
 #MECH-WYKRES
                 case 2:
                     b=1
@@ -73,34 +75,35 @@ while a == 0:
                     ylabel = 'Wychylenie - x[m]'
                     wykres()
                 case _:
-                    print("Nie można tego użyć. Wybierz 1 lub 2.")
+                    print("Nie mozna tego uzyc. Wybierz 1 lub 2.")
 #WYBÓR: ELEKTRYCZNE - WARTOŚĆ LUB WYKRES
     if opcja_1==2:
-        a = float(input('Podaj wartość \'Q\' amplitudy ładunku [C]:'))
-        w = float(input('Podaj wartość \'omega\' częstości własnej drgań [rad/s]:'))
-        f = float(input('Podaj wartość \'R\' rezystancji opornika w układzie [Ohm]:'))
-        m = float(input('Podaj indukcyjność cewki \'L\' w ukłdzie [H]:'))
-        p = float(input('Podaj fazę poczatkową ruchu \'phi\' [rad]:'))
+        a = float(input('Podaj wartosc \'Q\' amplitudy ladunku [C]:'))
+        w = float(input('Podaj wartosc \'omega\' czestosci wlasnej drgan [rad/s]:'))
+        f = float(input('Podaj wartosc \'R\' rezystancji opornika w ukladzie [Ohm]:'))
+        m = float(input('Podaj indukcyjnosc cewki \'L\' w ukldzie [H]:'))
+        p = float(input('Podaj faze poczatkowa ruchu \'phi\' [rad]:'))
         b = 0
         while b == 0:
             wybor = int(input(
-                'Wpisz 1, aby otrzymać wartość ładunku w układzie w konkretnej chwili czasu lub 2, aby wyświetlić wykres drgań w funkcji czasu:'))
+                'Wpisz 1, aby otrzymac wartosc ladunku w ukladzie w konkretnej chwili czasu lub 2, aby wyswietlic wykres drgan w funkcji czasu:'))
             match wybor:
 #EL-WARTOŚĆ
                 case 1:
-                    t = float(input('Podaj moment drgań:[s]'))
+                    t = float(input('Podaj moment drgan:[s]'))
                     b = 1
                     if ((w * 2) - ((f / (2 * m)) * 2)) >= 0:
-                        print('Wartość ładunku w układzie dla chwili czasu t=', t, 's wyniosła ', wartosc())
-                        drganie = 'Wartość ładunku w układzie RLC '
+                        print('Wartosc ladunku w ukladzie dla chwili czasu t=', t, 's wyniosla ', wartosc())
+                        drganie = 'Wartosc ladunku w ukladzie RLC '
+                        jednostka = ' C'
                         zapis()
                     else:
-                        print('Brak drgań dla wprowadzonych parametrów. Zachodzi zanik eksponencjalny')
+                        print('Brak drgan dla wprowadzonych parametrów. Zachodzi zanik eksponencjalny')
 #EL-WYKRES
                 case 2:
                     b = 1
                     title = 'Drgania elektryczne: q(t)'
-                    ylabel = 'Wartość ładunku - q[C]'
+                    ylabel = 'Wartosc ladunku - q[C]'
                     wykres()
                 case _:
-                    print("Nie można tego użyć. Wybierz 1 lub 2.")
+                    print("Nie mozna tego uzyc. Wybierz 1 lub 2.")
