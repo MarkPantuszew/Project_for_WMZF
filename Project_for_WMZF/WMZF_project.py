@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 def wartosc():
-    x = a * (np.exp(-f / (2 * m) * t)) * np.sin((np.sqrt(abs((w * 2) - ((f / (2 * m)) * 2))) * t) + p)
+    x = a * (np.exp(-f / (2 * m) * t)) * np.sin((np.sqrt(abs((w ** 2) - ((f / (2 * m)) ** 2))) * t) + p)
     return x
 def zapis():
     zapis_t = repr(t)
@@ -10,7 +10,7 @@ def zapis():
     zapis_drganie = drganie
     zapis_jednostka = jednostka
     plik = open("Drganie w chwili t", "w")
-    plik.write(zapis_drganie + "w ostatnio wybranej chwili czasu:\nt= " + zapis_t + " s\nwyniosla:\n" + zapis_x + zapis_jednostka)
+    plik.write(zapis_drganie + "w ostatnio wybranej chwili czasu:\nt = " + zapis_t + " s\nwyniosla:\n" + zapis_x + zapis_jednostka)
     plik.close()
 def wykres():
     t_data = []
@@ -20,12 +20,12 @@ def wykres():
     ax.set_ylim(-(a + 1), (a + 1))
     line, = ax.plot(0, 0)
     plt.title(title)
-    plt.xlabel('Czas - t[s]')
+    plt.xlabel('Czas - t [s]')
     plt.ylabel(ylabel)
     plt.grid()
     def animation_frame(t):
         t_data.append(t)
-        x_data.append(a * (np.exp((-f / (2 * m)) * t)) * np.sin((np.sqrt(abs((w * 2) - ((f / (2 * m)) * 2))) * t) + p))
+        x_data.append(a * (np.exp(-f / (2 * m) * t)) * np.sin((np.sqrt(abs((w ** 2) - ((f / (2 * m)) ** 2))) * t) + p))
         line.set_xdata(t_data)
         line.set_ydata(x_data)
         return line,
@@ -48,11 +48,12 @@ while a == 0:
         print("To nie jest typ integer. Wprowadz 1 lub 2.")
 #WYBÓR: MECHANICZNE - WARTOŚĆ LUB WYKRES
     if opcja_1 == 1:
+        print('Drgania mechaniczne:\n x = A * (exp(-f/(2m) * t)) * sin((sqrt(w^2 - ((f/2m)^2)) * t) + p)')
         a = float(input('Podaj wartosc \'A\' amplitudy drgan mechanicznych [m]:'))
-        w = float(input('Podaj wartosc \'omega\' czestosci wlasnej drgan [rad/s]:'))
+        w = float(input('Podaj wartosc \'w\' czestosci wlasnej drgan [rad/s]:'))
         f = float(input('Podaj wartosc \'f\' wspolczynnika oporow ruchu [kg/s]:'))
         m = float(input('Podaj mase \'m\' drgajacego ciala [kg]:'))
-        p = float(input('Podaj faze \'phi\' poczatkowa ruchu [rad]:'))
+        p = float(input('Podaj faze \'p\' poczatkowa ruchu [rad]:'))
         b = 0
         while b == 0:
             wybor = int(input('Wpisz 1, aby otrzymac wartosc wychylenia w konkretnej chwili czasu lub 2, aby wyswietlic wykres drgan w funkcji czasu:'))
@@ -72,12 +73,13 @@ while a == 0:
                 case 2:
                     b=1
                     title = 'Drgania mechaniczne: x(t)'
-                    ylabel = 'Wychylenie - x[m]'
+                    ylabel = 'Wychylenie - x [m]'
                     wykres()
                 case _:
                     print("Nie mozna tego uzyc. Wybierz 1 lub 2.")
 #WYBÓR: ELEKTRYCZNE - WARTOŚĆ LUB WYKRES
     if opcja_1==2:
+        print('Drgania elektryczne:\n q = Q * (exp(-R/(2L) * t)) * sin((sqrt(w^2 - ((R/2L)^2)) * t) + p)')
         a = float(input('Podaj wartosc \'Q\' amplitudy ladunku [C]:'))
         w = float(input('Podaj wartosc \'omega\' czestosci wlasnej drgan [rad/s]:'))
         f = float(input('Podaj wartosc \'R\' rezystancji opornika w ukladzie [Ohm]:'))
@@ -103,7 +105,7 @@ while a == 0:
                 case 2:
                     b = 1
                     title = 'Drgania elektryczne: q(t)'
-                    ylabel = 'Wartosc ladunku - q[C]'
+                    ylabel = 'Wartosc ladunku - q [C]'
                     wykres()
                 case _:
                     print("Nie mozna tego uzyc. Wybierz 1 lub 2.")
