@@ -95,7 +95,7 @@ while a == 0:
                     t = float(input('Podaj moment drgan:[s]'))
                     b = 1
                     if ((w * 2) - ((f / (2 * m)) * 2)) >= 0:
-                        print('Wartosc ladunku w ukladzie dla chwili czasu t=', t, 's wyniosla ', wartosc())
+                        print('Wartosc ladunku w ukladzie dla chwili czasu t =', t, 's wyniosla ', wartosc(), 'C')
                         drganie = 'Wartosc ladunku w ukladzie RLC '
                         jednostka = ' C'
                         zapis()
