@@ -63,7 +63,7 @@ while a == 0:
                     t = float(input('Podaj moment ruchu:[s]'))
                     b = 1
                     if ((w * 2) - ((f / (2 * m)) * 2)) >= 0:
-                        print('Wartosc wychylenia w  chwili czasu t=', t, 's wyniosla ', wartosc())
+                        print('Wartosc wychylenia w chwili czasu t =', t, 's wyniosla ', wartosc(), 'm')
                         drganie = 'Wartosc wychylenia '
                         jednostka = ' m'
                         zapis()
@@ -95,12 +95,12 @@ while a == 0:
                     t = float(input('Podaj moment drgan:[s]'))
                     b = 1
                     if ((w * 2) - ((f / (2 * m)) * 2)) >= 0:
-                        print('Wartosc ladunku w ukladzie dla chwili czasu t =', t, 's wyniosla ', wartosc(), 'C')
+                        print('Wartosc ladunku w ukladzie w chwili czasu t =', t, 's wyniosla ', wartosc(), 'C')
                         drganie = 'Wartosc ladunku w ukladzie RLC '
                         jednostka = ' C'
                         zapis()
                     else:
-                        print('Brak drgan dla wprowadzonych parametrów. Zachodzi zanik eksponencjalny')
+                        print('Brak drgan dla wprowadzonych parametrow. Zachodzi zanik eksponencjalny')
 #EL-WYKRES
                 case 2:
                     b = 1
