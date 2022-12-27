@@ -48,7 +48,7 @@ while a == 0:
         print("To nie jest typ integer. Wprowadz 1 lub 2.")
 #WYBÓR: MECHANICZNE - WARTOŚĆ LUB WYKRES
     if opcja_1 == 1:
-        print('Drgania mechaniczne:\n x = A * (exp(-f/(2m) * t)) * sin((sqrt(w^2 - ((f/2m)^2)) * t) + p)')
+        print('Drgania mechaniczne:\n x = A * (exp(-f / 2m * t)) * sin((sqrt(w^2 - ((f / 2m)^2)) * t) + p)')
         a = float(input('Podaj wartosc \'A\' amplitudy drgan mechanicznych [m]:'))
         w = float(input('Podaj wartosc \'w\' czestosci wlasnej drgan [rad/s]:'))
         f = float(input('Podaj wartosc \'f\' wspolczynnika oporow ruchu [kg/s]:'))
@@ -68,7 +68,7 @@ while a == 0:
                         jednostka = ' m'
                         zapis()
                     else:
-                        print('Brak drgan dla wprowadzonych parametrow. Zachodzi zanik eksponencjalny')
+                        print('Brak drgan dla wprowadzonych parametrow. Zachodzi zanik eksponencjalny.')
 #MECH-WYKRES
                 case 2:
                     b=1
@@ -79,7 +79,7 @@ while a == 0:
                     print("Nie mozna tego uzyc. Wybierz 1 lub 2.")
 #WYBÓR: ELEKTRYCZNE - WARTOŚĆ LUB WYKRES
     if opcja_1==2:
-        print('Drgania elektryczne:\n q = Q * (exp(-R/(2L) * t)) * sin((sqrt(w^2 - ((R/2L)^2)) * t) + p)')
+        print('Drgania elektryczne:\n q = Q * (exp(-R / 2L * t)) * sin((sqrt(w^2 - ((R / 2L)^2)) * t) + p)')
         a = float(input('Podaj wartosc \'Q\' amplitudy ladunku [C]:'))
         w = float(input('Podaj wartosc \'omega\' czestosci wlasnej drgan [rad/s]:'))
         f = float(input('Podaj wartosc \'R\' rezystancji opornika w ukladzie [Ohm]:'))
