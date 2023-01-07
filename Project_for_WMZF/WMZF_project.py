@@ -2,20 +2,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from tkinter import *
+from tkinter import messagebox
 root = Tk()
 #FUNKCJE
 def wartosc():
-    x = a * (np.exp(-f / (2 * m) * t)) * np.sin((np.sqrt(abs((w ** 2) - ((f / (2 * m)) ** 2))) * t) + p)
+    x = a * (np.exp(-f / (2 * m) * t)) * np.sin((np.sqrt(abs((w * 2) - ((f / (2 * m)) * 2))) * t) + p)
     return x
 
-def zapis():
-    zapis_t = repr(t)
-    zapis_x = repr(wartosc())
-    zapis_drganie = drganie
-    zapis_jednostka = jednostka
-    plik = open("Drganie w chwili t", "w")
-    plik.write(zapis_drganie + "w ostatnio wybranej chwili czasu:\nt = " + zapis_t + " s\nwyniosla:\n" + zapis_x + zapis_jednostka)
-    plik.close()
+# def zapis():
+#     zapis_t = repr(t)
+#     zapis_x = repr(wartosc())
+#     zapis_drganie = drganie
+#     zapis_jednostka = jednostka
+#     plik = open("Drganie w chwili t", "w")
+#     plik.write(zapis_drganie + "w ostatnio wybranej chwili czasu:\nt = " + zapis_t + " s\nwyniosla:\n" + zapis_x + zapis_jednostka)
+#     plik.close()
 
 def wykres():
     t_data = []
@@ -30,7 +31,7 @@ def wykres():
     plt.grid()
     def animation_frame(t):
         t_data.append(t)
-        x_data.append(a * (np.exp(-f / (2 * m) * t)) * np.sin((np.sqrt(abs((w ** 2) - ((f / (2 * m)) ** 2))) * t) + p))
+        x_data.append(a * (np.exp(-f / (2 * m) * t)) * np.sin((np.sqrt(abs((w * 2) - ((f / (2 * m)) * 2))) * t) + p))
         line.set_xdata(t_data)
         line.set_ydata(x_data)
         return line,
@@ -39,6 +40,8 @@ def wykres():
         return plt.show()
     else:
         return Label(root, text='Brak drgan dla wprowadzonych parametrow! Zachodzi zanik eksponencjalny.').pack()
+
+clicks_mech,click_el = 0,0
 
 def mech():
     global title
@@ -75,6 +78,12 @@ def mech():
     l_faza.pack()
     faza.pack()
 
+    global clicks_mech
+    clicks_mech += 1
+    if clicks_mech == 1:
+        mechbutton.config(state="disabled")
+        elbutton.config(state="disabled")
+
 def el():
     global title
     title = 'Drgania elektryczne: q(t)'
@@ -82,7 +91,7 @@ def el():
     ylabel = 'Wartosc ladunku - q [C]'
     global jednostka
     jednostka = 'C'
-    l_wzor = Label(root, text='q = Q * (exp(-R/(2L) * t)) * sin((sqrt(w^2 - ((R/2L)^2)) * t) + p)')
+    l_wzor = Label(root, text='x = Q * (exp(-R/(2L) * t)) * sin((sqrt(w^2 - ((R/2L)^2)) * t) + p)')
     global amplituda
     amplituda = Entry(root, width=15)
     l_amplituda = Label(root, text='Podaj wartosc \'Q\' amplitudy ladunku w ukladzie [C]:')
@@ -109,6 +118,12 @@ def el():
     masa.pack()
     l_faza.pack()
     faza.pack()
+
+    global click_el
+    click_el+=1
+    if click_el == 1:
+        elbutton.config(state="disabled")
+        mechbutton.config(state="disabled")
 
 def tkwykres():
     global a
@@ -147,15 +162,21 @@ def tkwartosc2():
     t = float(chwilat.get())
     str_t = str(t)
     wartosc()
-    zapis()
+    # zapis()
     l_wartosc = Label(root, text='Drganie w chwili ' + str_t + 's wyniosło:\n' + jednostka)
     l_wartosc.pack()
-#_______________________________________________________________________________________________________________________
+
+def zamykanie_okna():
+    if messagebox.askokcancel("Zamykanie okna","Chcesz zamknąć okno?"):
+        root.destroy()
+root.protocol("WM_DELETE_WINDOW",zamykanie_okna)
 
 #wybór rodzaj drgań
+root.title("Drgania")
+root.geometry("400x500")
 lrodzaj = Label(root, text='Wybierz rodzaj tłumionych drgan harmonicznych:')
 
-mechbutton = Button(root, text='Mechaniczne', command=mech, fg='red')
+mechbutton = Button(root, text='Mechaniczne', command=mech, fg='red',)
 elbutton = Button(root, text='Elektryczne', command=el, fg='blue')
 
 lrodzaj.pack()
@@ -174,51 +195,3 @@ bwartosc.pack()
 exit = Button(root, text="Wyjscie", command=root.destroy)
 exit.pack()
 root.mainloop()
-
-# #WYBÓR: MECHANICZNE - WARTOŚĆ LUB WYKRES
-#     if opcja_1 == 1:
-#         print('Drgania mechaniczne:\n x = A * (exp(-f/(2m) * t)) * sin((sqrt(w^2 - ((f/2m)^2)) * t) + p)')
-#         a = float(input('Podaj wartosc \'A\' amplitudy drgan mechanicznych [m]:'))
-#         w = float(input('Podaj wartosc \'w\' czestosci wlasnej drgan [rad/s]:'))
-#         f = float(input('Podaj wartosc \'f\' wspolczynnika oporow ruchu [kg/s]:'))
-#         m = float(input('Podaj mase \'m\' drgajacego ciala [kg]:'))
-#         p = float(input('Podaj faze \'p\' poczatkowa ruchu [rad]:'))
-#         b = 0
-#         while b == 0:
-#             wybor = int(input('Wpisz 1, aby otrzymac wartosc wychylenia w konkretnej chwili czasu lub 2, aby wyswietlic wykres drgan w funkcji czasu:'))
-#             match wybor:
-# #MECH-WARTOŚĆ
-#                 case 1:
-#                     t = float(input('Podaj moment ruchu:[s]'))
-#                     b = 1
-#                     if ((w * 2) - ((f / (2 * m)) * 2)) >= 0:
-#                         print('Wartosc wychylenia w chwili czasu t =', t, 's wyniosla ', wartosc(), 'm')
-#                         drganie = 'Wartosc wychylenia '
-#                         jednostka = ' m'
-#                         zapis()
-#                     else:
-#                         print('Brak drgan dla wprowadzonych parametrow. Zachodzi zanik eksponencjalny')
-# #WYBÓR: ELEKTRYCZNE - WARTOŚĆ LUB WYKRES
-#     if opcja_1==2:
-#         print('Drgania elektryczne:\n q = Q * (exp(-R/(2L) * t)) * sin((sqrt(w^2 - ((R/2L)^2)) * t) + p)')
-#         a = float(input('Podaj wartosc \'Q\' amplitudy ladunku [C]:'))
-#         w = float(input('Podaj wartosc \'omega\' czestosci wlasnej drgan [rad/s]:'))
-#         f = float(input('Podaj wartosc \'R\' rezystancji opornika w ukladzie [Ohm]:'))
-#         m = float(input('Podaj indukcyjnosc cewki \'L\' w ukldzie [H]:'))
-#         p = float(input('Podaj faze poczatkowa ruchu \'phi\' [rad]:'))
-#         b = 0
-#         while b == 0:
-#             wybor = int(input(
-#                 'Wpisz 1, aby otrzymac wartosc ladunku w ukladzie w konkretnej chwili czasu lub 2, aby wyswietlic wykres drgan w funkcji czasu:'))
-#             match wybor:
-# #EL-WARTOŚĆ
-#                 case 1:
-#                     t = float(input('Podaj moment drgan:[s]'))
-#                     b = 1
-#                     if ((w * 2) - ((f / (2 * m)) * 2)) >= 0:
-#                         print('Wartosc ladunku w ukladzie w chwili czasu t =', t, 's wyniosla ', wartosc(), 'C')
-#                         drganie = 'Wartosc ladunku w ukladzie RLC '
-#                         jednostka = ' C'
-#                         zapis()
-#                     else:
-#                         print('Brak drgan dla wprowadzonych parametrow. Zachodzi zanik eksponencjalny')
