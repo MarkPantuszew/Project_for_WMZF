@@ -91,7 +91,7 @@ def el():
     ylabel = 'Wartosc ladunku - q [C]'
     global jednostka
     jednostka = 'C'
-    l_wzor = Label(root, text='q = Q * (exp(-R/(2L) * t)) * sin((sqrt(w^2 - ((R/2L)^2)) * t) + p)')
+    l_wzor = Label(root, text='x = Q * (exp(-R/(2L) * t)) * sin((sqrt(w^2 - ((R/2L)^2)) * t) + p)')
     global amplituda
     amplituda = Entry(root, width=15)
     l_amplituda = Label(root, text='Podaj wartosc \'Q\' amplitudy ladunku w ukladzie [C]:')
@@ -163,7 +163,7 @@ def tkwartosc2():
     str_t = str(t)
     wartosc()
     # zapis()
-    l_wartosc = Label(root, text='Drganie w chwili ' + str_t + 's wyniosło:\n' + jednostka)
+    l_wartosc = Label(root, text='Wartość drgania dla t =' + str_t + 's wyniosła:\n' + jednostka)
     l_wartosc.pack()
 
 def zamykanie_okna():
@@ -176,7 +176,7 @@ root.title("Drgania")
 root.geometry("400x500")
 lrodzaj = Label(root, text='Wybierz rodzaj tłumionych drgan harmonicznych:')
 
-mechbutton = Button(root, text='Mechaniczne', command=mech, fg='red')
+mechbutton = Button(root, text='Mechaniczne', command=mech, fg='red',)
 elbutton = Button(root, text='Elektryczne', command=el, fg='blue')
 
 lrodzaj.pack()
