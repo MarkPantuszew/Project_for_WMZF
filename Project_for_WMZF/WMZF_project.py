@@ -126,45 +126,60 @@ def el():
         mechbutton.config(state="disabled")
 
 def tkwykres():
-    global a
-    a = float(amplituda.get())
-    global w
-    w = float(omega.get())
-    global f
-    f = float(wsplop.get())
-    global m
-    m = float(masa.get())
-    global p
-    p = float(faza.get())
-    wykres()
+    try:
+        global a
+        a = float((amplituda.get()))
+        global w
+        w = float((omega.get()))
+        global f
+        f = float((wsplop.get()))
+        global m
+        m = float((masa.get()))
+        global p
+        p = float((faza.get()))
+    except ValueError:
+        blad = Label(root, text='Wprowadz dane liczbowe!')
+        blad.pack()
+    else:
+        wykres()
 
 def tkwartosc1():
-    global a
-    a = float(amplituda.get())
-    global w
-    w = float(omega.get())
-    global f
-    f = float(wsplop.get())
-    global m
-    m = float(masa.get())
-    global p
-    p = float(faza.get())
-    global chwilat
-    chwilat = Entry(root, width=15)
-    l_chwilat = Label(root, text='Wprowadz chwile czasu \'t\' trwania drgania [s]:')
-    l_chwilat.pack()
-    chwilat.pack()
-    zatwierdz = Button(root, text='Zatwierdz', command=tkwartosc2)
-    zatwierdz.pack()
+    try:
+        global a
+        a = float((amplituda.get()))
+        global w
+        w = float((omega.get()))
+        global f
+        f = float((wsplop.get()))
+        global m
+        m = float((masa.get()))
+        global p
+        p = float((faza.get()))
+    except ValueError:
+        blad=Label(root, text='Wprowadz dane liczbowe!')
+        blad.pack()
+    else:
+        global chwilat
+        chwilat = Entry(root, width=15)
+        l_chwilat = Label(root, text='Wprowadz chwile czasu \'t\' trwania drgania [s]:')
+        l_chwilat.pack()
+        chwilat.pack()
+        zatwierdz = Button(root, text='Zatwierdz', command=tkwartosc2)
+        zatwierdz.pack()
 
 def tkwartosc2():
-    global t
-    t = float(chwilat.get())
-    str_t = str(t)
-    wartosc()
-    # zapis()
-    l_wartosc = Label(root, text='Wartość drgania dla t =' + str_t + 's wyniosła:\n' + jednostka)
-    l_wartosc.pack()
+    try:
+        global t
+        t = float(chwilat.get())
+        str_t = str(t)
+    except ValueError:
+        blad = Label(root, text='Wprowadz dane liczbowe!')
+        blad.pack()
+    else:
+        wartosc()
+        #zapis()
+        l_wartosc = Label(root, text='Wartość drgania dla t =' + str_t + 's wyniosła:\n' + jednostka)
+        l_wartosc.pack()
 
 def zamykanie_okna():
     if messagebox.askokcancel("Zamykanie okna","Chcesz zamknąć okno?"):
