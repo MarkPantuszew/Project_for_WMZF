@@ -39,7 +39,7 @@ def wykres():
     if ((w * 2) - ((f / (2 * m)) * 2)) >= 0:
         return plt.show()
     else:
-        return Label(root, text='Brak drgan dla wprowadzonych parametrow! Zachodzi zanik eksponencjalny.').pack()
+        return Label(nowe_okno, text='Brak drgan dla wprowadzonych parametrow! Zachodzi zanik eksponencjalny.').pack()
 
 clicks_mech,click_el = 0,0
 
@@ -182,6 +182,8 @@ def tkwartosc1():
         messagebox.showerror("Błąd!", "Proszę podać wartości liczbowe")
     if float(masa.get()) == 0:
         messagebox.showerror("Błąd!", "Nie mogę wykonać dzielenia przez 0!")
+    # elif float(amplituda.get())==None :
+    #     
     else:
         global chwilat
         chwilat = Entry(nowe_okno, width=15)
@@ -199,6 +201,9 @@ def tkwartosc2():
         messagebox.showerror("Bląd!", "Proszę podać wartosći liczbowe")
     if float(masa.get()) == 0:
         messagebox.showerror("Bład", "Nie mogę wykonać dzielenia przez 0!")
+    elif ((w * 2) - ((f / (2 * m)) * 2)) < 0:
+       zanik = Label(nowe_okno, text='Brak drgan dla wprowadzonych parametrow! Zachodzi zanik eksponencjalny.')
+       zanik.pack()
     else:
         str_t = str((chwilat.get()))
         x = str(wartosc())
