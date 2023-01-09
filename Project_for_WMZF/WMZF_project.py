@@ -203,7 +203,7 @@ def tkwartosc2():
         str_t = str((chwilat.get()))
         x = str(wartosc())
         # zapis()
-        l_wartosc = Label(root, text='Wartość drgania dla t =' + str_t + 's wyniosła:\n' + x + jednostka)
+        l_wartosc = Label(nowe_okno, text='Wartość drgania dla t =' + str_t + 's wyniosła:\n' + x + jednostka)
         l_wartosc.pack()
 
 def zamykanie_okna():
