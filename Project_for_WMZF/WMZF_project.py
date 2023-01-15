@@ -53,7 +53,7 @@ def mech():
     global ylabel
     ylabel = 'Wychylenie - x [m]'
     global jednostka
-    jednostka = 'm'
+    jednostka = ' m'
     l_wzor = Label(nowe_okno, text='x = A * (exp(-f/(2m) * t)) * sin((sqrt(w^2 - ((f/2m)^2)) * t) + p)')
     global amplituda
     amplituda = Entry(nowe_okno, width=15)
@@ -83,7 +83,7 @@ def mech():
     faza.pack()
     lwybor = Label(nowe_okno, text='Wybierz wykres lub wartosc drgan dla konkretnej chwili czasu:')
     bwykres = Button(nowe_okno, text='Wykres', command=tkwykres)
-    bwartosc = Button(nowe_okno, text='Wartosc', command=tkwartosc1)
+    bwartosc = Button(nowe_okno, text='Wartosc w chwili czasu', command=tkwartosc1)
     exit = Button(nowe_okno, text="Wyjscie", command=root.destroy)
     lwybor.pack()
     bwykres.pack()
@@ -98,14 +98,14 @@ def mech():
 def el():
     global nowe_okno
     nowe_okno = Toplevel(root)
-    nowe_okno.title("Drgania elektryczne: x(t)")
+    nowe_okno.title("Drgania elektryczne: q(t)")
     nowe_okno.geometry("500x450")
     global title
     title = 'Drgania elektryczne: q(t)'
     global ylabel
     ylabel = 'Wartosc ladunku - q [C]'
     global jednostka
-    jednostka = 'C'
+    jednostka = ' C'
     l_wzor = Label(nowe_okno, text='x = Q * (exp(-R/(2L) * t)) * sin((sqrt(w^2 - ((R/2L)^2)) * t) + p)')
     global amplituda
     amplituda = Entry(nowe_okno, width=15)
@@ -135,7 +135,7 @@ def el():
     faza.pack()
     lwybor = Label(nowe_okno, text='Wybierz wykres lub wartosc drgan dla konkretnej chwili czasu:')
     bwykres = Button(nowe_okno, text='Wykres', command=tkwykres)
-    bwartosc = Button(nowe_okno, text='Wartosc', command=tkwartosc1)
+    bwartosc = Button(nowe_okno, text='Wartosc w chwili czasu', command=tkwartosc1)
     exit = Button(nowe_okno, text="Wyjscie", command=root.destroy)
     lwybor.pack()
     bwykres.pack()
@@ -183,7 +183,7 @@ def tkwartosc1():
     if float(masa.get()) == 0:
         messagebox.showerror("Błąd!", "Nie mogę wykonać dzielenia przez 0!")
     # elif float(amplituda.get())==None :
-    #     
+    #
     else:
         global chwilat
         chwilat = Entry(nowe_okno, width=15)
@@ -208,7 +208,7 @@ def tkwartosc2():
         str_t = str((chwilat.get()))
         x = str(wartosc())
         # zapis()
-        l_wartosc = Label(nowe_okno, text='Wartość drgania dla t =' + str_t + 's wyniosła:\n' + x + jednostka)
+        l_wartosc = Label(nowe_okno, text='Wartość drgania w chwili t =' + str_t + 's wyniosła:\n' + x + jednostka)
         l_wartosc.pack()
 
 def zamykanie_okna():
