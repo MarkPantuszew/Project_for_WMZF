@@ -7,22 +7,21 @@ root = Tk()
 #FUNKCJE
 def wartosc():
     x = a * (np.exp(-f / (2 * m) * t)) * np.sin((np.sqrt(abs((w * 2) - ((f / (2 * m)) * 2))) * t) + p)
-    return x
+    return round(x,3)
 
 # def zapis():
-#     zapis_t = repr(t)
+#     zapis_t = repr(chwilat.get())
 #     zapis_x = repr(wartosc())
-#     zapis_drganie = drganie
 #     zapis_jednostka = jednostka
 #     plik = open("Drganie w chwili t", "w")
-#     plik.write(zapis_drganie + "w ostatnio wybranej chwili czasu:\nt = " + zapis_t + " s\nwyniosla:\n" + zapis_x + zapis_jednostka)
+#     plik.write("Wartość drgania w ostatnio wybranej chwili czasu:\nt = " + zapis_t + " s\nwyniosla:\n" + zapis_x + zapis_jednostka)
 #     plik.close()
 
 def wykres():
     t_data = []
     x_data = []
     fig, ax = plt.subplots()
-    ax.set_xlim(0, 60)
+    ax.set_xlim(-1, 60)
     ax.set_ylim(-(a + 1), (a + 1))
     line, = ax.plot(0, 0)
     plt.title(title)
