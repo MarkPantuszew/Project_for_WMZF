@@ -3,8 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from tkinter import *
 from tkinter import messagebox
-root = Tk()
-#FUNKCJE
+
 def wartosc():
     x = a * (np.exp(-f / (2 * m) * t)) * np.sin((np.sqrt(abs((w * 2) - ((f / (2 * m)) * 2))) * t) + p)
     return round(x,5)
@@ -179,8 +178,6 @@ def tkwartosc1():
         messagebox.showerror("Błąd!", "Proszę podać wartości liczbowe")
     if float(masa.get()) == 0:
         messagebox.showerror("Błąd!", "Nie mogę wykonać dzielenia przez 0!")
-    # elif float(amplituda.get())==None :
-    #
     else:
         global chwilat
         chwilat = Entry(nowe_okno, width=15)
@@ -209,12 +206,12 @@ def tkwartosc2():
         l_wartosc.pack()
 
 def zamykanie_okna():
-    if messagebox.askokcancel("Zamykanie okna","Chcesz zamknąć okno?"):
+    if messagebox.askokcancel("Zamykanie okna","Czy chcesz zamknąć okno?"):
         root.destroy()
 
+root = Tk()
 clicks_mech,click_el = 0,0
 root.protocol("WM_DELETE_WINDOW",zamykanie_okna)
-#wybór rodzaj drgań
 root.title("Drgania")
 root.geometry("300x80")
 lrodzaj = Label(root, text='Wybierz rodzaj tłumionych drgan harmonicznych:')
