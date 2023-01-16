@@ -7,15 +7,15 @@ root = Tk()
 #FUNKCJE
 def wartosc():
     x = a * (np.exp(-f / (2 * m) * t)) * np.sin((np.sqrt(abs((w * 2) - ((f / (2 * m)) * 2))) * t) + p)
-    return round(x,3)
+    return round(x,5)
 
-# def zapis():
-#     zapis_t = repr(chwilat.get())
-#     zapis_x = repr(wartosc())
-#     zapis_jednostka = jednostka
-#     plik = open("Drganie w chwili t", "w")
-#     plik.write("Wartość drgania w ostatnio wybranej chwili czasu:\nt = " + zapis_t + " s\nwyniosla:\n" + zapis_x + zapis_jednostka)
-#     plik.close()
+def zapis():
+    zapis_t = repr(t)
+    zapis_x = repr(wartosc())
+    zapis_jednostka = jednostka
+    plik = open("Drganie w chwili t", "w")
+    plik.write("Wartosc drgania w ostatnio wybranej chwili czasu:\nt = " + zapis_t + " s\nwyniosla:\n" + zapis_x + zapis_jednostka)
+    plik.close()
 
 def wykres():
     t_data = []
@@ -39,8 +39,6 @@ def wykres():
         return plt.show()
     else:
         return Label(nowe_okno, text='Brak drgan dla wprowadzonych parametrow! Zachodzi zanik eksponencjalny.').pack()
-
-clicks_mech,click_el = 0,0
 
 def mech():
     global nowe_okno
@@ -206,13 +204,15 @@ def tkwartosc2():
     else:
         str_t = str((chwilat.get()))
         x = str(wartosc())
-        # zapis()
+        zapis()
         l_wartosc = Label(nowe_okno, text='Wartość drgania w chwili t =' + str_t + 's wyniosła:\n' + x + jednostka)
         l_wartosc.pack()
 
 def zamykanie_okna():
     if messagebox.askokcancel("Zamykanie okna","Chcesz zamknąć okno?"):
         root.destroy()
+
+clicks_mech,click_el = 0,0
 root.protocol("WM_DELETE_WINDOW",zamykanie_okna)
 #wybór rodzaj drgań
 root.title("Drgania")
