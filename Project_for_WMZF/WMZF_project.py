@@ -90,7 +90,11 @@ def mech():
     if clicks_mech == 1:
         mechbutton.config(state="disabled")
         elbutton.config(state="disabled")
-
+    amplituda.insert(0, '0')
+    wsplop.insert(0,'0')
+    omega.insert(0,'0')
+    masa.insert(0,'0')
+    faza.insert(0,'0')
 def el():
     global nowe_okno
     nowe_okno = Toplevel(root)
@@ -138,11 +142,15 @@ def el():
     bwartosc.pack()
     exit.pack()
     global click_el
-    click_el+=1
+    click_el +=1
     if click_el == 1:
         elbutton.config(state="disabled")
         mechbutton.config(state="disabled")
-
+    amplituda.insert(0, '0')
+    wsplop.insert(0,'0')
+    omega.insert(0,'0')
+    masa.insert(0,'0')
+    faza.insert(0,'0')
 def tkwykres():
     try:
         global a
@@ -210,7 +218,7 @@ def zamykanie_okna():
         root.destroy()
 
 root = Tk()
-clicks_mech,click_el = 0,0
+clicks_mech,click_el, click_zatwierdz = 0,0,0
 root.protocol("WM_DELETE_WINDOW",zamykanie_okna)
 root.title("Drgania")
 root.geometry("300x80")
