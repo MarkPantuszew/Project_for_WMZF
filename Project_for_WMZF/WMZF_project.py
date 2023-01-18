@@ -90,11 +90,7 @@ def mech():
     if clicks_mech == 1:
         mechbutton.config(state="disabled")
         elbutton.config(state="disabled")
-    amplituda.insert(0, '0')
-    wsplop.insert(0,'0')
-    omega.insert(0,'0')
-    masa.insert(0,'0')
-    faza.insert(0,'0')
+
 def el():
     global nowe_okno
     nowe_okno = Toplevel(root)
@@ -142,30 +138,46 @@ def el():
     bwartosc.pack()
     exit.pack()
     global click_el
-    click_el +=1
+    click_el+=1
     if click_el == 1:
         elbutton.config(state="disabled")
         mechbutton.config(state="disabled")
-    amplituda.insert(0, '0')
-    wsplop.insert(0,'0')
-    omega.insert(0,'0')
-    masa.insert(0,'0')
-    faza.insert(0,'0')
+
 def tkwykres():
     try:
         global a
-        a = float(amplituda.get())
+        if amplituda.get() == '':
+            a = 0
+        else:
+            a = float(amplituda.get())
+
         global w
-        w = float(omega.get())
+        if omega.get() == '':
+            w=0
+        else:
+            w = float(omega.get())
+
         global f
-        f = float(wsplop.get())
+        if wsplop.get() == '':
+            f=0
+        else:
+            f = float(wsplop.get())
+
         global m
-        m = float(masa.get())
+        if masa.get() == '':
+            m=0
+        else:
+            m = float(masa.get())
+
         global p
-        p = float(faza.get())
+        if faza.get() == '':
+            p=0
+        else:
+            p = float(faza.get())
+
     except ValueError:
         messagebox.showerror("Bląd!", "Proszę podać wartosći liczbowe")
-    if float(masa.get()) == 0:
+    if masa.get() == 0 or masa.get() == '':
         messagebox.showerror("Bład", "Nie mogę wykonać dzielenia przez 0!")
     else:
         wykres()
@@ -173,18 +185,38 @@ def tkwykres():
 def tkwartosc1():
     try:
         global a
-        a = float(amplituda.get())
+        if amplituda.get() == '':
+            a = 0
+        else:
+            a = float(amplituda.get())
+
         global w
-        w = float(omega.get())
+        if omega.get() == '':
+            w = 0
+        else:
+            w = float(omega.get())
+
         global f
-        f = float(wsplop.get())
+        if wsplop.get() == '':
+            f = 0
+        else:
+            f = float(wsplop.get())
+
         global m
-        m = float(masa.get())
+        if masa.get() == '':
+            m = 0
+        else:
+            m = float(masa.get())
+
         global p
-        p = float(faza.get())
+        if faza.get() == '':
+            p = 0
+        else:
+            p = float(faza.get())
+
     except ValueError:
         messagebox.showerror("Błąd!", "Proszę podać wartości liczbowe")
-    if float(masa.get()) == 0:
+    if masa.get() == 0 or masa.get() == '':
         messagebox.showerror("Błąd!", "Nie mogę wykonać dzielenia przez 0!")
     else:
         global chwilat
@@ -218,7 +250,7 @@ def zamykanie_okna():
         root.destroy()
 
 root = Tk()
-clicks_mech,click_el, click_zatwierdz = 0,0,0
+clicks_mech,click_el = 0,0
 root.protocol("WM_DELETE_WINDOW",zamykanie_okna)
 root.title("Drgania")
 root.geometry("300x80")
