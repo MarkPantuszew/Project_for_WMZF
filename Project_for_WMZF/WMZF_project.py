@@ -43,7 +43,7 @@ def mech():
     global nowe_okno
     nowe_okno = Toplevel(root)
     nowe_okno.title("Drgania mechaniczne: x(t)")
-    nowe_okno.geometry("450x500")
+    nowe_okno.geometry("450x500+450+160")
     global title
     title = 'Drgania mechaniczne: x(t)'
     global ylabel
@@ -95,7 +95,7 @@ def el():
     global nowe_okno
     nowe_okno = Toplevel(root)
     nowe_okno.title("Drgania elektryczne: q(t)")
-    nowe_okno.geometry("500x450")
+    nowe_okno.geometry("500x450+450+160")
     global title
     title = 'Drgania elektryczne: q(t)'
     global ylabel
@@ -144,106 +144,103 @@ def el():
         mechbutton.config(state="disabled")
 
 def tkwykres():
+    global a
+    global w
+    global f
+    global m
+    global p
     try:
-        global a
         if amplituda.get() == '':
             a = 0
         else:
             a = float(amplituda.get())
-        global w
-        if omega.get() == '':
-            w=0
-        else:
-            w = float(omega.get())
-        global f
-        if wsplop.get() == '':
-            f=0
-        else:
-            f = float(wsplop.get())
-        global m
-        if masa.get() == '':
-            m=0
-        else:
-            m = float(masa.get())
-        global p
-        if faza.get() == '':
-            p=0
-        else:
-            p = float(faza.get())
-    except ValueError:
-        messagebox.showerror("Bląd!", "Proszę podać wartosći liczbowe")
-    if masa.get() == 0 or masa.get() == '':
-        messagebox.showerror("Bład", "Nie mogę wykonać dzielenia przez 0!")
-    else:
-        wykres()
-
-def tkwartosc1():
-    try:
-        global a
-        if amplituda.get() == '':
-            a = 0
-        else:
-            a = float(amplituda.get())
-        global w
         if omega.get() == '':
             w = 0
         else:
             w = float(omega.get())
-        global f
         if wsplop.get() == '':
             f = 0
         else:
             f = float(wsplop.get())
-        global m
         if masa.get() == '':
-            m = 0
+           m= 0
         else:
             m = float(masa.get())
-        global p
         if faza.get() == '':
             p = 0
         else:
             p = float(faza.get())
+        if m == 0:
+            messagebox.showerror("Bład", "Nie mogę wykonać dzielenia przez 0!")
+        else:
+            wykres()
+    except ValueError:
+        messagebox.showerror("Blad!", "Proszę podać wartosći liczbowe")
+        #czegoś brakuje
+def tkwartosc1():
+    global a
+    global w
+    global f
+    global m
+    global p
+    try:
+        if amplituda.get() == '':
+            a = 0
+        else:
+            a = float(amplituda.get())
+        if omega.get() == '':
+            w = 0
+        else:
+            w = float(omega.get())
+        if wsplop.get() == '':
+            f = 0
+        else:
+            f = float(wsplop.get())
+        if masa.get() == '':
+            m = 0
+        else:
+            m = float(masa.get())
+        if faza.get() == '':
+            p = 0
+        else:
+            p = float(faza.get())
+        if m == 0:
+            messagebox.showerror("Błąd!", "Nie mogę wykonać dzielenia przez 0!")
+
+        else:
+            global chwilat
+            chwilat = Entry(nowe_okno, width=15)
+            l_chwilat = Label(nowe_okno, text='Wprowadz chwile czasu \'t\' trwania drgania [s]:')
+            l_chwilat.pack()
+            chwilat.pack()
+            zatwierdz = Button(nowe_okno, text='Zatwierdz', command=tkwartosc2)
+            zatwierdz.pack()
     except ValueError:
         messagebox.showerror("Błąd!", "Proszę podać wartości liczbowe")
-    if masa.get() == 0 or masa.get() == '':
-        messagebox.showerror("Błąd!", "Nie mogę wykonać dzielenia przez 0!")
-    else:
-        global chwilat
-        chwilat = Entry(nowe_okno, width=15)
-        l_chwilat = Label(nowe_okno, text='Wprowadz chwile czasu \'t\' trwania drgania [s]:')
-        l_chwilat.pack()
-        chwilat.pack()
-        zatwierdz = Button(nowe_okno, text='Zatwierdz', command=tkwartosc2)
-        zatwierdz.pack()
-
+        # czegoś brakuje
 def tkwartosc2():
     global t
     try:
         t = float(chwilat.get())
+        if ((w * 2) - ((f / (2 * m)) * 2)) < 0:
+            zanik = Label(nowe_okno, text='Brak drgan dla wprowadzonych parametrow! Zachodzi zanik eksponencjalny.')
+            zanik.pack()
+        else:
+            str_t = str((chwilat.get()))
+            x = str(wartosc())
+            zapis()
+            l_wartosc = Label(nowe_okno, text='Wartość drgania w chwili t =' + str_t + 's wyniosła:\n' + x + jednostka)
+            l_wartosc.pack()
     except ValueError:
         messagebox.showerror("Bląd!", "Proszę podać wartosći liczbowe")
-    if float(masa.get()) == 0:
-        messagebox.showerror("Bład", "Nie mogę wykonać dzielenia przez 0!")
-    elif ((w * 2) - ((f / (2 * m)) * 2)) < 0:
-       zanik = Label(nowe_okno, text='Brak drgan dla wprowadzonych parametrow! Zachodzi zanik eksponencjalny.')
-       zanik.pack()
-    else:
-        str_t = str((chwilat.get()))
-        x = str(wartosc())
-        zapis()
-        l_wartosc = Label(nowe_okno, text='Wartość drgania w chwili t =' + str_t + 's wyniosła:\n' + x + jednostka)
-        l_wartosc.pack()
-
 def zamykanie_okna():
     if messagebox.askokcancel("Zamykanie okna","Czy chcesz zamknąć okno?"):
         root.destroy()
-
 root = Tk()
 clicks_mech,click_el = 0,0
 root.protocol("WM_DELETE_WINDOW",zamykanie_okna)
 root.title("Drgania")
-root.geometry("300x80")
+root.geometry("300x80+550+200")
 lrodzaj = Label(root, text='Wybierz rodzaj tłumionych drgan harmonicznych:')
 mechbutton = Button(root, text='Mechaniczne', command=mech, fg='red',)
 elbutton = Button(root, text='Elektryczne', command=el, fg='blue')
