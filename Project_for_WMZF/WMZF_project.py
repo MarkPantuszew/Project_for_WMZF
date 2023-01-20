@@ -150,31 +150,26 @@ def tkwykres():
             a = 0
         else:
             a = float(amplituda.get())
-
         global w
         if omega.get() == '':
             w=0
         else:
             w = float(omega.get())
-
         global f
         if wsplop.get() == '':
             f=0
         else:
             f = float(wsplop.get())
-
         global m
         if masa.get() == '':
             m=0
         else:
             m = float(masa.get())
-
         global p
         if faza.get() == '':
             p=0
         else:
             p = float(faza.get())
-
     except ValueError:
         messagebox.showerror("Bląd!", "Proszę podać wartosći liczbowe")
     if masa.get() == 0 or masa.get() == '':
@@ -189,31 +184,26 @@ def tkwartosc1():
             a = 0
         else:
             a = float(amplituda.get())
-
         global w
         if omega.get() == '':
             w = 0
         else:
             w = float(omega.get())
-
         global f
         if wsplop.get() == '':
             f = 0
         else:
             f = float(wsplop.get())
-
         global m
         if masa.get() == '':
             m = 0
         else:
             m = float(masa.get())
-
         global p
         if faza.get() == '':
             p = 0
         else:
             p = float(faza.get())
-
     except ValueError:
         messagebox.showerror("Błąd!", "Proszę podać wartości liczbowe")
     if masa.get() == 0 or masa.get() == '':
