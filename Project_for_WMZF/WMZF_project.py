@@ -34,16 +34,16 @@ def wykres():
         line.set_ydata(x_data)
         return line,
     animation = FuncAnimation(fig, func=animation_frame, frames=np.arange(0, 60, 0.1), interval=1, blit=True, repeat=False)
-    if ((w * 2) - ((f / (2 * m)) * 2)) >= 0:
-        return plt.show()
-    else:
+    if ((w * 2) - ((f / (2 * m)) * 2)) < 0:
         return Label(nowe_okno, text='Brak drgan dla wprowadzonych parametrow! Zachodzi zanik eksponencjalny.').pack()
+    else:
+        return plt.show()
 
 def mech():
     global nowe_okno
     nowe_okno = Toplevel(root)
     nowe_okno.title("Drgania mechaniczne: x(t)")
-    nowe_okno.geometry("450x500+450+160")
+    nowe_okno.geometry("450x500")
     global title
     title = 'Drgania mechaniczne: x(t)'
     global ylabel
@@ -95,7 +95,7 @@ def el():
     global nowe_okno
     nowe_okno = Toplevel(root)
     nowe_okno.title("Drgania elektryczne: q(t)")
-    nowe_okno.geometry("500x450+450+160")
+    nowe_okno.geometry("500x450")
     global title
     title = 'Drgania elektryczne: q(t)'
     global ylabel
@@ -176,7 +176,7 @@ def tkwykres():
             wykres()
     except ValueError:
         messagebox.showerror("Blad!", "Proszę podać wartosći liczbowe")
-        #czegoś brakuje
+
 def tkwartosc1():
     global a
     global w
@@ -206,7 +206,6 @@ def tkwartosc1():
             p = float(faza.get())
         if m == 0:
             messagebox.showerror("Błąd!", "Nie mogę wykonać dzielenia przez 0!")
-
         else:
             global chwilat
             chwilat = Entry(nowe_okno, width=15)
@@ -218,6 +217,7 @@ def tkwartosc1():
     except ValueError:
         messagebox.showerror("Błąd!", "Proszę podać wartości liczbowe")
         # czegoś brakuje
+
 def tkwartosc2():
     global t
     try:
@@ -233,14 +233,16 @@ def tkwartosc2():
             l_wartosc.pack()
     except ValueError:
         messagebox.showerror("Bląd!", "Proszę podać wartosći liczbowe")
+
 def zamykanie_okna():
     if messagebox.askokcancel("Zamykanie okna","Czy chcesz zamknąć okno?"):
         root.destroy()
+
 root = Tk()
 clicks_mech,click_el = 0,0
 root.protocol("WM_DELETE_WINDOW",zamykanie_okna)
 root.title("Drgania")
-root.geometry("300x80+550+200")
+root.geometry("300x80")
 lrodzaj = Label(root, text='Wybierz rodzaj tłumionych drgan harmonicznych:')
 mechbutton = Button(root, text='Mechaniczne', command=mech, fg='red',)
 elbutton = Button(root, text='Elektryczne', command=el, fg='blue')
