@@ -26,6 +26,7 @@ def wykres():
     plt.title(title)
     plt.xlabel('Czas - t [s]')
     plt.ylabel(ylabel)
+    ax.set_facecolor("#e1ddbf")
     plt.grid()
     def animation_frame(t):
         t_data.append(t)
